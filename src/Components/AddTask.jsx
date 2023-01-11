@@ -1,9 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import '../App.css';
 
 export default function AddTask(){
+    const [tags,setTags]=useState([]);
     return <div className="add-task-container">
-        <h1>Add a task</h1>
         <form>
             <label for="title" >Title</label> <br/>
             <input id="title" type='text' name="title" maxLength="100" placeholder="Title of the task" required /> <br/>
