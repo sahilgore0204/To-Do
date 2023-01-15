@@ -1,37 +1,40 @@
+*{
+  font-family: 'Caveat', cursive;
+}
+
+button{
+  cursor: pointer;
+}
+
 body{
   background-color: #EEF2E6;
   margin: 0;
-  font-family: 'Caveat', cursive;
 }
 
-::placeholder{
-  font-family: 'Caveat', cursive;
-}
 
-input, select, textarea, button{
+input, select, textarea{
   font-family:inherit;
   font-size: 1em;
   color: grey;
   margin-bottom: 10px;
   margin-left: 5px;
-  width: 25%;
+  width: 35%;
+  border:none;
 }
 
 .nav-bar {
   background-color: #FFB100;
   color: white;
-  font-size: 40px;
+  font-size: 2.5rem;
   text-align: center;
 }
 
 .add-task-container{
-  border: 1px solid black;
   text-align: center;
 }
 
 form{
   font-size: 1.5em;
-  text-align: center;
 }
 
 h1{
@@ -54,9 +57,53 @@ label{
   font-size: 2.5em;
   height: 1.5em;
   border-radius: 0.75em;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.large-btn:hover{
+  opacity: 0.5;
 }
 
 .small-btn{
   width:10%;
   font-size: 1em;
+}
+
+.add-task-modal{
+  width: 70%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  z-index: 10;
+  background-color: rgb(134, 229, 255,0.3);
+  border-radius: 3rem;
+}
+
+.add-task-modal-overlay{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color:rgba(128,128,128,0.5);
+}
+
+.medium-btn{
+  font-size: 1em;
+  width: 20%;
+  background-color:#FFB100;
+  color: #000;
+  border-radius: 1.5rem;
+}
+
+.customize{
+  font-size: 2rem;
+  font-weight: 1000;
+  position: fixed;
+  right:3%;
+  top: 1%;
+  background-color: rgb(134, 229, 255,0.01);
+  border: none;
 }

@@ -1,6 +1,18 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import '../App.css';
-
+import { useToggle } from "../Contexts/VisiblityContext";
 export default function Button(props){
-    return <button style={props.style} className={props.type}>{props.children}</button>
+    let visiblity=useToggle();
+    //console.log("button");
+    function handleClick(){
+        if(props.duty==="add-task")
+        visiblity();
+        else if(props.duty==="submit"){
+            console.log("form submitted");
+        }
+        else if(props.duty==="close-modal"){
+            visiblity();
+        }
+    }
+    return <button onClick={handleClick} style={props.style} className={props.type} type={props.duty}>{props.children}</button>
 }

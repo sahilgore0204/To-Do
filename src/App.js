@@ -1,17 +1,23 @@
+import React,{useState} from 'react';
 import './App.css';
 import Navbar from './Components/Navbar';
 import AddTask from './Components/AddTask';
 import TaskList from './Components/TaskList';
 import Button from './Components/Button';
+import VisiblityContext from './Contexts/VisiblityContext';
+
 function App() {
+  
   return (
     <>
       <Navbar className="nav-bar" />
-      <Button style={{backgroundColor:"blue",color:"black",display:"block",margin:"5px auto"}} type="large-btn">Add a Task</Button>
-      <AddTask/>
-      <TaskList/>
+      <VisiblityContext>
+        <Button style={{backgroundColor:"#86E5FF",color:"black",display:"block",margin:"15px auto 5px"}} type="large-btn" duty="add-task">Add a Task</Button>
+        <AddTask/>
+      </VisiblityContext>
+      {/* <TaskList/>
       <Button bgcolor="red" type="large-btn">Large btn</Button>
-      <Button bgcolor="yellow" type="small-btn">Small btn</Button>
+      <Button bgcolor="yellow" type="small-btn">Small btn</Button> */}
     </>
   );
 }

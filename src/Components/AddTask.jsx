@@ -1,10 +1,16 @@
 import React,{useState} from "react";
 import '../App.css';
-
-export default function AddTask(){
+import { useVisiblity,useToggle } from "../Contexts/VisiblityContext";
+import Button from "./Button";
+export default function AddTask(props){
+    const visible=useVisiblity();
+    console.log("addTask");
+    const toggle=useToggle();
     const [tags,setTags]=useState([]);
     return <div className="add-task-container">
-        <form>
+        <div className="add-task-modal" style={{display:visible?"block":"none"}}>
+         <Button type="customize" duty="close-modal">&times;</Button>
+         <form>
             <label for="title" >Title</label> <br/>
             <input id="title" type='text' name="title" maxLength="100" placeholder="Title of the task" required /> <br/>
 
@@ -15,7 +21,7 @@ export default function AddTask(){
             <input id="duedate" type='date' name="duedate"/> <br/>
 
             <label for="tags">Tags</label> <br/>
-            <input id="tags" type="text" name="tags" placeholder="Add tags"/> <br/>
+            <input id="tags" type="text" name="tags" placeholder="Add tags(comma separated)"/> <br/>
 
             <label for="status">Status:</label> <br/>
             <select name="status" id="status" required>
@@ -23,7 +29,12 @@ export default function AddTask(){
                 <option value="WORKING">WORKING</option>
                 <option value="DONE">DONE</option>
                 <option value="OVERDUE">OVERDUE</option>
-            </select>
-        </form>
+            </select><br/>
+            <Button type="medium-btn" duty="submit">Submit</Button>
+         </form>
+        </div>
+        <div onClick={toggle} className="add-task-modal-overlay" style={{display:visible?"block":"none",pointerEvents:visible?"all":"none"}}>
+
+        </div>
     </div>
 }
