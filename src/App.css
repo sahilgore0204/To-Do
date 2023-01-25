@@ -10,17 +10,29 @@ body{
   background-color: #EEF2E6;
   margin: 0;
 }
+ ::placeholder{
+  color: grey;
+ }
 
-
-input, select, textarea{
+input, select, textarea,.custom-input{
   font-family:inherit;
   font-size: 1em;
-  color: grey;
+  color: black;
+  background-color: white;
   margin-bottom: 10px;
   margin-left: 5px;
-  width: 35%;
+  width: 40%;
+  height: 1.25em;
+  text-align: left;
   border:none;
 }
+
+.react-datepicker-popper{
+ left: 50% !important;
+ top: 80% !important;
+ transform: translate(-50%,-50%) !important;
+}
+
 
 .nav-bar {
   background-color: #FFB100;
@@ -70,7 +82,7 @@ label{
 }
 
 .add-task-modal{
-  width: 70%;
+  width: 60%;
   position: fixed;
   top: 50%;
   left: 50%;
