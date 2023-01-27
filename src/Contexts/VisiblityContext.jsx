@@ -13,6 +13,7 @@ export function useToggle(){
 }
 
 export default function VisiblityContext(props){
+    //console.log("called visi contx");
     const [visiblity,setVisiblity]=useState(false);
     function toggleVisiblity(){
         console.log("called toggle visiblity");

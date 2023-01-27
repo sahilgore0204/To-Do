@@ -129,6 +129,7 @@ label{
   justify-content: center;
   background-color: white;
   font-weight: bold;
+  position: relative;
 }
 
 .description{
@@ -136,6 +137,7 @@ label{
   color: grey;
   font-weight: lighter;
 }
+
 
 .content{
   padding: 25px;
@@ -172,8 +174,6 @@ label{
 }
 
 .status-space{
-  position: absolute;
-  bottom: 0;
   width: 70%;
 }
 .tag{
@@ -183,4 +183,23 @@ label{
   margin: 0;
   display: inline-block;
   border-radius: 0.87rem;
+}
+
+.edit-btn{
+  display: inline-block;
+  position: absolute;
+  top: 30%;
+  left: 100%;
+}
+
+.edit{
+  height: 55%;
+  width: 55%;
+  box-sizing: content-box;
+  display: block;
+  margin-bottom: 1%;
+}
+
+.edit-btn br{
+  margin: 0;
 }

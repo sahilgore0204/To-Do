@@ -11,6 +11,11 @@ export default function OneTask(){
                 <div className="status">Status: WORKING</div>
                 <div className="status-space" style={{marginBottom:"5px"}}><Tag/> <Tag/> <Tag/> <Tag/> <Tag/></div>
             </div>
+            <div className="edit-btn">
+                <button title="Mark as done" className="edit">&#10004;</button>
+                <button title="Update Task" className="edit">&#10000;</button>
+                <button title="Delete Task" className="edit">&#x2716;</button>
+            </div>
         </div>
     </>
 }

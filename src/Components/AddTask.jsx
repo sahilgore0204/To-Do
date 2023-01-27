@@ -5,23 +5,27 @@ import Button from "./Button";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
+import { useList } from "../Contexts/TaskListContext";
 export default function AddTask(props){
     const visible=useVisiblity();
+    const operate=useList();
     console.log("addTask");
     const toggle=useToggle();
     const [taskInfo,setTaskInfo]=useState({title:"",description:"",tags:"",status:"OPEN"});
     const [startDate, setStartDate] = useState(new Date());
 
+    function resetTaskInfo(){
+        setTaskInfo({title:"",description:"",tags:"",status:"OPEN"});
+        setStartDate(new Date());
+    }
     function handleChange(event){
         setTaskInfo({...taskInfo,[event.target.name]:event.target.value});
     }
     function handleSubmit(event){
         event.preventDefault();
         console.log(taskInfo);
+        operate("add-task",{task:{...taskInfo,duedate:startDate}});
         resetTaskInfo();
-    }
-    function resetTaskInfo(){
-        setTaskInfo({title:"",description:"",tags:"",status:"OPEN"});
     }
     return <div className="add-task-container">
         <div className="add-task-modal" style={{display:visible?"block":"none"}}>
