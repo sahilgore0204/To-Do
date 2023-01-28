@@ -3,7 +3,7 @@ import '../App.css';
 import { useToggle } from "../Contexts/VisiblityContext";
 export default function Button(props){
     let visiblity=useToggle();
-    //console.log("button");
+    console.log("button");
     function handleClick(){
         if(props.duty==="add-task"){
             visiblity();
