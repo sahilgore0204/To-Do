@@ -9,8 +9,8 @@ export default function DisplayTaskList(props){
     //console.log(taskList);
     return <div className="taskList">
         <h1 className='task-heading'>Your Tasks</h1>
-        {taskList.map((task,ind)=>{
-            return <OneTask key={ind} task={task}/>
+        {taskList.length>0 && taskList.map((task,ind)=>{
+            return <OneTask key={ind} task={task} id={ind}/>
         })}
     </div>
 }

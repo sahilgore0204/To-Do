@@ -1,18 +1,27 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import '../App.css';
-import { useVisiblity,useToggle } from "../Contexts/VisiblityContext";
+import { useVisiblity,useToggle,useSelect } from "../Contexts/VisiblityContext";
 import Button from "./Button";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
-import { useList } from "../Contexts/TaskListContext";
+import { useList,useViewList} from "../Contexts/TaskListContext";
 export default function AddTask(props){
     const visible=useVisiblity();
     const operate=useList();
     console.log("addTask");
     const toggle=useToggle();
+    const selectedInd=useSelect();
+    const taskList=useViewList();
     const [taskInfo,setTaskInfo]=useState({title:"",description:"",tags:"",status:"OPEN"});
     const [startDate, setStartDate] = useState(new Date());
+
+    useEffect(()=>{
+        if(selectedInd==-1)
+        return;
+        const task=taskList[selectedInd];
+        setTaskInfo({title:task.title,description:task.description,tags:task.tags,status:task.status});
+    },[selectedInd]);
 
     function resetTaskInfo(){
         setTaskInfo({title:"",description:"",tags:"",status:"OPEN"});
@@ -24,7 +33,7 @@ export default function AddTask(props){
     function handleSubmit(event){
         event.preventDefault();
         console.log(taskInfo);
-        operate("add-task",{task:{...taskInfo,duedate:startDate}});
+        operate("add-task",{task:{...taskInfo,duedate:startDate.toLocaleDateString('en-US',{weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}});
         resetTaskInfo();
     }
     return <div className="add-task-container">
