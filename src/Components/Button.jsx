@@ -1,8 +1,10 @@
 import React,{useState,useContext} from "react";
 import '../App.css';
-import { useToggle } from "../Contexts/VisiblityContext";
+import { useToggle,useToggleP,useSelect } from "../Contexts/VisiblityContext";
 export default function Button(props){
     let visiblity=useToggle();
+    const ind=useSelect();
+    const toggleP=useToggleP();
     console.log("button");
     function handleClick(){
         if(props.duty==="add-task"){

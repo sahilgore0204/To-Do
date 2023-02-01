@@ -1,6 +1,6 @@
-import React,{useEffect, useState} from "react";
+import React,{useEffect, useState, useTransition} from "react";
 import '../App.css';
-import { useVisiblity,useToggle,useSelect } from "../Contexts/VisiblityContext";
+import { useVisiblity,useToggle,useSelect,useToggleP } from "../Contexts/VisiblityContext";
 import Button from "./Button";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,15 +11,23 @@ export default function AddTask(props){
     const operate=useList();
     console.log("addTask");
     const toggle=useToggle();
+    const toggleP=useToggleP();
     const selectedInd=useSelect();
+    console.log("add-task"+selectedInd);
     const taskList=useViewList();
     const [taskInfo,setTaskInfo]=useState({title:"",description:"",tags:"",status:"OPEN"});
     const [startDate, setStartDate] = useState(new Date());
 
     useEffect(()=>{
-        if(selectedInd==-1)
-        return;
+        if(selectedInd===-1){
+            setTaskInfo({title:"",description:"",tags:"",status:"OPEN"});
+            return;
+        }
         const task=taskList[selectedInd];
+        if(!task){
+            setTaskInfo({title:"",description:"",tags:"",status:"OPEN"});
+            return;
+        }
         setTaskInfo({title:task.title,description:task.description,tags:task.tags,status:task.status});
     },[selectedInd]);
 
@@ -34,8 +42,12 @@ export default function AddTask(props){
         event.preventDefault();
         console.log(taskInfo);
         operate("add-task",{task:{...taskInfo,duedate:startDate.toLocaleDateString('en-US',{weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}});
+        if(selectedInd!==-1){
+            toggleP();
+        }
         resetTaskInfo();
     }
+    console.log(taskInfo);
     return <div className="add-task-container">
         <div className="add-task-modal" style={{display:visible?"block":"none"}}>
          <Button reset={resetTaskInfo} type="customize" duty="close-modal">&times;</Button>

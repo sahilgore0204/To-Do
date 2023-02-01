@@ -8,6 +8,7 @@ import VisiblityContext from './Contexts/VisiblityContext';
 import OneTask from './Components/OneTask';
 import TaskListContext from './Contexts/TaskListContext';
 import DisplayTaskList from './Components/DisplayTaskList';
+import PromptBox from './Components/PromptBox';
 
 function App() {
   //console.log("called app");
@@ -21,6 +22,7 @@ function App() {
       {/* <TaskList/>
       <Button bgcolor="red" type="large-btn">Large btn</Button>
       <Button bgcolor="yellow" type="small-btn">Small btn</Button> */}
+      <PromptBox/>
     </>
   );
 }
