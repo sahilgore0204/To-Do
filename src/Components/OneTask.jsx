@@ -24,10 +24,12 @@ export default function OneTask(props){
                 <div className="description" style={{marginBottom:"10px"}}>{props.task.description}</div>
                 <div className="date">{(todayDate-taskDate)>86400000 && "Was"} Due on {date}</div>
                 <div className="status">Status: {props.task.status}</div>
-                <div className="status-space" style={{marginBottom:"5px"}}>{tags.map((tag,ind)=><Tag key={ind}>{tag}</Tag>)}</div>
+                <div className="status-space" style={{marginBottom:"5px"}}>{tags.map((tag,ind)=><Tag duty="noselect" key={ind}>{tag}</Tag>)}</div>
             </div>
             <div className="edit-btn">
-                <button title="Mark as done" style={{backgroundColor:"#38E54D"}} className="edit">&#10004;</button>
+                <button onClick={()=>{
+                    operate("done",{task:props.id});
+                }} title="Mark as done" style={{backgroundColor:"#38E54D"}} className="edit">&#10004;</button>
                 <button onClick={()=>{
                     toggleVisiblity(props.id);
                 }}  title="Update Task" style={{backgroundColor:"#FFB100"}} className="edit">&#10000;</button>

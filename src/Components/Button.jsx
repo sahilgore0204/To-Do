@@ -18,5 +18,5 @@ export default function Button(props){
             visiblity();
         }
     }
-    return <button onClick={handleClick} style={props.style} className={props.type} type={props.duty}>{props.children}</button>
+    return <button  onClick={handleClick} style={props.style} className={props.type} type={props.duty}>{props.children}</button>
 }

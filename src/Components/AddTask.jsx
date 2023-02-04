@@ -1,4 +1,4 @@
-import React,{useEffect, useState, useTransition} from "react";
+import React,{useEffect, useState} from "react";
 import '../App.css';
 import { useVisiblity,useToggle,useSelect,useToggleP } from "../Contexts/VisiblityContext";
 import Button from "./Button";
@@ -42,10 +42,18 @@ export default function AddTask(props){
         event.preventDefault();
         console.log(taskInfo);
         operate("add-task",{task:{...taskInfo,duedate:startDate.toLocaleDateString('en-US',{weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}});
-        if(selectedInd!==-1){
-            toggleP();
+        if(selectedInd===-1){
+            resetTaskInfo();
+            toggle();
+            return;
         }
-        resetTaskInfo();
+        //some more work needs to be done as it is an update request
+
+        //algo: as new task is already added, selectedInd points to old task
+        //on prompt : if "No" is clicked=> then delete the last element(the added element)
+        //if "YES" is clicked then simply make the delete request for the selected index.
+        //after "YES" or "NO", each visiblity needs to be toggled.
+        toggleP();
     }
     console.log(taskInfo);
     return <div className="add-task-container">

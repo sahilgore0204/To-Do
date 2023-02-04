@@ -261,3 +261,22 @@ label{
   background: none;
   border: none;
 }
+
+
+.filter-container{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.filter{
+  font-size: 2rem;
+  height: 3.2rem;
+}
+
+.displayTags{
+  margin: 0 auto;
+  width: 20vw;
+  background-color: wheat;
+}

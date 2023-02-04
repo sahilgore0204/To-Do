@@ -1,28 +1,35 @@
 import React,{useContext} from "react";
 import "../App.css";
-import { useVisiblityP,useToggleP,useSelect,useVisiblity } from "../Contexts/VisiblityContext";
-import { useList } from "../Contexts/TaskListContext";
+import { useVisiblityP,useToggleP,useSelect,useVisiblity,useToggle } from "../Contexts/VisiblityContext";
+import { useList,useViewList } from "../Contexts/TaskListContext";
 export default function PromptBox(props){
     const visiblity=useVisiblityP();
     const addTaskVisiblity=useVisiblity();
-    const toggle=useToggleP();
+    const toggleP=useToggleP();
     const ind=useSelect();
     const operate=useList();
+    const toggle=useToggle();
+    const list=useViewList();
     function handleClick(event){
         if(event.target.id==="NO"){
-            toggle();
-            //if(addTaskVisiblity)
-            //delete the last element from taskList;
+            if(addTaskVisiblity){
+                operate("delete",{task:list.length-1});
+                toggleP();
+            }
+            else
+            toggleP();
         }
         else{
+            operate('delete',{task:ind});
             if(addTaskVisiblity){
                 //its an update request
                 //delete the entry of selected index
+                toggleP();
                 toggle();
-                return;
             }
-            operate("delete",{task:ind});
-            toggle();
+            else{
+                toggleP();
+            }
         }
     }
     return <>
@@ -31,11 +38,11 @@ export default function PromptBox(props){
             <button id="YES" onClick={handleClick}>YES</button>
             <button id="NO" onClick={handleClick}>No</button>
             <button onClick={()=>{
-                toggle();
+                handleClick({target:{id:"NO"}});
             }} className="close-msg-modal">&times;</button>
         </div>
         <div onClick={()=>{
-            toggle();
+            handleClick({target:{id:"NO"}});
         }} className="msg-modal-overlay" style={{display:visiblity?"block":"none",pointerEvents:visiblity?"all":"none"}}></div>
     </>
 }

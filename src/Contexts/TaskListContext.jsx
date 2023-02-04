@@ -55,6 +55,16 @@ export default function TaskListContext(props){
                 return prev.filter((task,id)=>id!==ind);
             });
         }
+        else if(action==="done"){
+            const ind=payload.task;
+            setTaskList((prev)=>{
+                return prev.map((task,id)=>{
+                    if(id===ind)
+                    task.status="DONE";
+                    return task;
+                })
+            })
+        }
     }
     return <ListContext.Provider value={operate}>
         <ViewListContex.Provider value={taskList}>
